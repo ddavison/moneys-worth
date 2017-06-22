@@ -3,7 +3,7 @@ analytics:
   ga_id: UA-XXXXXXX-X
 
 steam:
-  api_key: 1DCFEF6C1019F336C79977FB21188AA6
+  api_key: 
 
 games:
   image_width: 200
