@@ -1,0 +1,28 @@
+.panel.panel-success
+  .panel-heading Games
+  .panel-body
+    - games = Steam.get_games_for(steamid).sort { |x,y| y['playtime_forever'] <=> x['playtime_forever']}
+    - games.each do |game|
+      - game_info = Steam.get_game_information(game['appid'])
+      .game.row
+        .col-sm-3
+          = image_tag Steam.image_url_for_game(game['appid']), width: Settings.games.image_width, height: Settings.games.image_height
+        .col-sm-4
+          strong= game_info.name
+          p= game_info.short_description.truncate(70)
+        .col-sm-1
+          p Played
+          p
+            = game['playtime_forever'] / 60
+            | h
+        .col-sm-1
+          p Price
+          p= number_to_currency(game_info.price / 100)
+        .col-sm-1
+          p $/hr
+          p= (game_info.price / game['playtime_forever']).round(2)
+        .col-sm-2
+          - if (game_info.price / game['playtime_forever']) <= Settings.games.worth_threshold
+            strong.label-success WORTH
+          - else
+            strong.label-danger NOT

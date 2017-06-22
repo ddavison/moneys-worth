@@ -1,0 +1,15 @@
+.container
+  .navbar-header
+    = link_to "Money's Worth", root_path, class: 'navbar-brand'
+    button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button"
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+  #navbar-main.navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li= link_to 'Home', root_path
+
+    = form_tag '#', method: :get, id: 'frmLookup'
+      ul.nav.navbar-nav.navbar-right
+        li
+          input.form-control type="text" id="user" name="user" placeholder="Lookup user"
